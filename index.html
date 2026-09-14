@@ -435,6 +435,66 @@
       document.getElementById('navProgramTitle').innerText = "The Mirror Effect";
       document.getElementById('programHeading').innerText = "The Mirror Effect: Empowering the Next Generation Through Identity-Matched Mentoring";
       document.getElementById('flyerTitle').innerText = "The Mirror Effect: Empowering the Next Generation";
+      const flyerBlurb = document.getElementById('flyerBlurbText');
+      if (flyerBlurb) flyerBlurb.innerText = programData.blurb;
+    }
+
+    function renderTagFilters() {
+      const container = document.getElementById('tagFilters');
+      if (!container) return;
+
+      const categories = Array.from(new Set(programData.mentors.map(m => m.category))).filter(Boolean);
+      
+      let html = `
+        <button onclick="selectTag('all')" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${activeTag === 'all' ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
+          All Mentors
+        </button>
+      `;
+
+      categories.forEach(cat => {
+        const isActive = activeTag === cat;
+        const safeCat = cat.replace(/'/g, "\\'");
+        html += `
+          <button onclick="selectTag('${safeCat}')" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${isActive ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
+            ${cat}
+          </button>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function selectTag(tag) {
+      activeTag = tag;
+      renderTagFilters();
+      filterMentors();
+    }
+
+    function filterMentors() {
+      const query = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
+      
+      const filtered = programData.mentors.filter(m => {
+        const matchesTag = activeTag === 'all' || m.category === activeTag;
+        const matchesQuery = !query || 
+          m.name.toLowerCase().includes(query) ||
+          m.title.toLowerCase().includes(query) ||
+          m.company.toLowerCase().includes(query) ||
+          m.category.toLowerCase().includes(query) ||
+          m.bio.toLowerCase().includes(query) ||
+          (m.skills || []).some(s => s.toLowerCase().includes(query));
+
+        return matchesTag && matchesQuery;
+      });
+
+      renderMentorGrid(filtered);
+    }
+
+    function resetSearch() {
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) searchInput.value = '';
+      activeTag = 'all';
+      renderTagFilters();
+      filterMentors();
     }
 
     function renderMentorGrid(mentorsToRender = programData.mentors) {
