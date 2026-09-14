@@ -94,13 +94,6 @@
 
       <!-- Action Controls -->
       <div class="flex items-center space-x-2 sm:space-x-3">
-        <!-- Edit Content Button -->
-        <button onclick="openEditDrawer()" class="px-3 py-2 text-xs sm:text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-all flex items-center space-x-2">
-          <i class="fa-solid fa-pen-to-square"></i>
-          <span class="hidden sm:inline">Edit Bios & Text</span>
-          <span class="sm:hidden">Edit</span>
-        </button>
-
         <!-- Toggle View Mode Button -->
         <button onclick="toggleFlyerMode()" id="viewToggleBtn" class="px-3 py-2 text-xs sm:text-sm font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 rounded-lg transition-all flex items-center space-x-2">
           <i class="fa-solid fa-file-pdf"></i>
@@ -271,60 +264,6 @@
     </div>
   </div>
 
-  <!-- Edit Content Drawer / Customizer -->
-  <div id="editDrawer" class="fixed inset-0 z-50 hidden modal-backdrop flex justify-end no-print">
-    <div class="bg-white w-full max-w-xl h-full shadow-2xl flex flex-col">
-      <!-- Drawer Header -->
-      <div class="px-6 py-4 bg-slate-900 text-white flex items-center justify-between">
-        <div>
-          <h3 class="font-bold text-lg">Update Mentors & Program Text</h3>
-          <p class="text-xs text-slate-400">Directly edit 3rd-person bios or program copy</p>
-        </div>
-        <button onclick="closeEditDrawer()" class="text-slate-400 hover:text-white text-xl">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-
-      <!-- Drawer Body Forms -->
-      <div class="p-6 overflow-y-auto flex-1 space-y-6">
-        
-        <!-- Program Blurb Editor -->
-        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
-          <h4 class="font-bold text-sm text-slate-800 flex items-center space-x-2">
-            <i class="fa-solid fa-file-lines text-blue-600"></i>
-            <span>Program Overview & Background</span>
-          </h4>
-          <p class="text-xs text-slate-500">Edit the program blurb displayed on the header & flyer:</p>
-          <textarea id="editProgramBlurbText" rows="4" class="w-full p-3 bg-white border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none"></textarea>
-        </div>
-
-        <!-- Manage Mentors Section -->
-        <div class="space-y-4">
-          <div class="flex items-center justify-between">
-            <h4 class="font-bold text-sm text-slate-800 flex items-center space-x-2">
-              <i class="fa-solid fa-users text-indigo-600"></i>
-              <span>Manage Mentor Profiles</span>
-            </h4>
-            <button onclick="addNewMentorTemplate()" class="px-3 py-1.5 bg-blue-50 text-blue-700 text-xs font-semibold rounded-lg hover:bg-blue-100 transition">
-              + Add New Mentor
-            </button>
-          </div>
-
-          <div id="editorMentorList" class="space-y-4">
-            <!-- Dynamic Mentor Edit Cards -->
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Drawer Footer -->
-      <div class="p-4 bg-slate-100 border-t border-slate-200 flex items-center justify-end space-x-3">
-        <button onclick="closeEditDrawer()" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-200 rounded-xl transition">Cancel</button>
-        <button onclick="saveCustomContent()" class="px-5 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-md transition">Save & Apply Diffs</button>
-      </div>
-    </div>
-  </div>
-
   <script>
     let programData = {
       title: "The Mirror Effect: Empowering the Next Generation Through Identity-Matched Mentoring",
@@ -336,6 +275,7 @@
           title: "Licensed Clinical Social Worker",
           company: "Behavioral Health & Crisis Intervention",
           photo: "janelle-patrick.png",
+          fallbackPhoto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400",
           linkedin: "https://www.linkedin.com/in/janelle-patrick-783a95143/",
           category: "Behavioral Health & Social Work",
           skills: ["Crisis Intervention", "CBT & DBT Therapy", "Team Leadership"],
@@ -347,6 +287,7 @@
           title: "Assistant to Mayor Malik Evans",
           company: "City of Rochester / Executive Leadership",
           photo: "xavier-andrews.jpg",
+          fallbackPhoto: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400",
           linkedin: "https://www.linkedin.com/in/xandrews/",
           category: "Communications & Government",
           skills: ["Media Strategy", "Crisis Communications", "Stakeholder Engagement"],
@@ -358,6 +299,7 @@
           title: "Project Officer & PhD Candidate",
           company: "MEDASSET (Sea Turtle Conservation)",
           photo: "eva-maria-panagiotou.jpg",
+          fallbackPhoto: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400",
           linkedin: "https://www.linkedin.com/in/alexandrapanagiotou/",
           category: "Conservation & Science",
           skills: ["Marine Science", "Wildlife Conservation", "Research & Policy"],
@@ -369,6 +311,7 @@
           title: "Director of Estimating & Strategic Growth",
           company: "Nappa Electrical Contractors",
           photo: "ben-felings.png",
+          fallbackPhoto: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400",
           linkedin: "https://www.linkedin.com/in/ben-felings-a7a0a156/",
           category: "Engineering & Construction",
           skills: ["Strategic Growth", "Project Management", "USMC Veteran Leadership"],
@@ -380,6 +323,7 @@
           title: "Executive Director",
           company: "Boston Society for Architecture",
           photo: "danyson-tavares.jpg",
+          fallbackPhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400",
           linkedin: "https://www.linkedin.com/in/danyson-tavares-54092258/",
           category: "Architecture & Nonprofit Leadership",
           skills: ["Architecture", "Community Development", "Inclusive Excellence"],
@@ -391,6 +335,7 @@
           title: "Director of Love, Inclusion & Trust",
           company: "Scituate Public Schools",
           photo: "jamele-adams.jpg",
+          fallbackPhoto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400",
           linkedin: "https://www.linkedin.com/in/jamele-adams-868607304/",
           category: "DEI & Creative Leadership",
           skills: ["Diversity & Equity", "Poetry & Arts", "Student Advocacy"],
@@ -402,6 +347,7 @@
           title: "State Policy Fellow",
           company: "Institute on Taxation and Economic Policy",
           photo: "sebastian-johnson.png",
+          fallbackPhoto: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400",
           linkedin: "https://www.linkedin.com/in/sebastian-johnson-7209a87a/",
           category: "Public Policy & Economics",
           skills: ["Public Policy", "Economic Research", "Government Affairs"],
@@ -526,6 +472,8 @@
       grid.innerHTML = mentorsToRender.map((m, idx) => {
         const initials = getInitials(m.name);
         const gradient = bgGradients[idx % bgGradients.length];
+        const photoSrc = m.photo || m.fallbackPhoto;
+        const fallbackSrc = m.fallbackPhoto || '';
         
         return `
           <div onclick="openMentorModal('${m.id}')" class="group cursor-pointer bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl border border-slate-200 hover:border-blue-400 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
@@ -535,8 +483,8 @@
               <!-- Header Avatar & Info -->
               <div class="flex items-start space-x-4 mb-4">
                 <div class="w-16 h-16 rounded-2xl bg-gradient-to-br ${gradient} text-white flex items-center justify-center font-extrabold text-lg shadow-md shrink-0 border-2 border-white group-hover:scale-105 transition-transform overflow-hidden relative">
-                  ${m.photo ? `<img src="${m.photo}" alt="${m.name}" class="w-full h-full object-cover" onerror="this.remove()">` : ''}
                   <span class="absolute">${initials}</span>
+                  <img src="${photoSrc}" alt="${m.name}" data-fallback="${fallbackSrc}" class="w-full h-full object-cover relative z-10" onerror="if(!this.dataset.failed){this.dataset.failed='true';if(this.dataset.fallback){this.src=this.dataset.fallback;}else{this.style.display='none';}}else{this.style.display='none';}">
                 </div>
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center justify-between gap-1">
@@ -574,12 +522,14 @@
       flyerGrid.innerHTML = mentorsToRender.map((m, idx) => {
         const initials = getInitials(m.name);
         const gradient = bgGradients[idx % bgGradients.length];
+        const photoSrc = m.photo || m.fallbackPhoto;
+        const fallbackSrc = m.fallbackPhoto || '';
 
         return `
           <div class="bg-white p-3.5 rounded-xl border border-slate-300 flex space-x-3 items-start">
             <div class="w-14 h-14 rounded-xl bg-gradient-to-br ${gradient} text-white flex items-center justify-center font-bold text-sm shrink-0 border border-slate-200 overflow-hidden relative">
-              ${m.photo ? `<img src="${m.photo}" alt="${m.name}" class="w-full h-full object-cover" onerror="this.remove()">` : ''}
               <span class="absolute">${initials}</span>
+              <img src="${photoSrc}" alt="${m.name}" data-fallback="${fallbackSrc}" class="w-full h-full object-cover relative z-10" onerror="if(!this.dataset.failed){this.dataset.failed='true';if(this.dataset.fallback){this.src=this.dataset.fallback;}else{this.style.display='none';}}else{this.style.display='none';}">
             </div>
             <div class="flex-1 min-w-0">
               <div class="flex items-center justify-between">
@@ -602,13 +552,34 @@
       const initialsEl = document.getElementById('modalAvatarInitials');
       const initials = getInitials(m.name);
 
-      if (m.photo) {
-        imgEl.src = m.photo;
+      initialsEl.innerText = initials;
+
+      const photoSrc = m.photo || m.fallbackPhoto;
+      const fallbackSrc = m.fallbackPhoto || '';
+
+      if (photoSrc) {
+        imgEl.src = photoSrc;
+        imgEl.dataset.fallback = fallbackSrc;
+        imgEl.dataset.failed = '';
+        imgEl.style.display = 'block';
         imgEl.classList.remove('hidden');
-        initialsEl.classList.add('hidden');
+        imgEl.onerror = function() {
+          if (!this.dataset.failed) {
+            this.dataset.failed = 'true';
+            if (this.dataset.fallback) {
+              this.src = this.dataset.fallback;
+            } else {
+              this.style.display = 'none';
+              initialsEl.classList.remove('hidden');
+            }
+          } else {
+            this.style.display = 'none';
+            initialsEl.classList.remove('hidden');
+          }
+        };
       } else {
+        imgEl.style.display = 'none';
         imgEl.classList.add('hidden');
-        initialsEl.innerText = initials;
         initialsEl.classList.remove('hidden');
       }
 
@@ -660,131 +631,6 @@
         flyerContainer.classList.add('hidden');
         btnText.innerText = "Flyer Preview Mode";
       }
-    }
-
-    function openEditDrawer() {
-      document.getElementById('editProgramBlurbText').value = programData.blurb;
-      renderEditorMentorList();
-      document.getElementById('editDrawer').classList.remove('hidden');
-    }
-
-    function closeEditDrawer() {
-      document.getElementById('editDrawer').classList.add('hidden');
-    }
-
-    function renderEditorMentorList() {
-      const container = document.getElementById('editorMentorList');
-      container.innerHTML = programData.mentors.map((m, idx) => `
-        <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm space-y-3 relative">
-          <button onclick="removeMentorFromEditor(${idx})" class="absolute top-3 right-3 text-red-500 hover:text-red-700 text-xs font-bold">
-            <i class="fa-solid fa-trash"></i> Delete
-          </button>
-          
-          <h5 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Mentor #${idx + 1}</h5>
-          
-          <div class="grid grid-cols-2 gap-2">
-            <div>
-              <label class="block text-[10px] font-bold text-slate-500 mb-0.5">Full Name & Credentials</label>
-              <input type="text" data-idx="${idx}" data-field="name" value="${m.name}" class="w-full p-2 bg-slate-50 border rounded-lg text-xs">
-            </div>
-            <div>
-              <label class="block text-[10px] font-bold text-slate-500 mb-0.5">Title / Role</label>
-              <input type="text" data-idx="${idx}" data-field="title" value="${m.title}" class="w-full p-2 bg-slate-50 border rounded-lg text-xs">
-            </div>
-          </div>
-
-          <div class="grid grid-cols-2 gap-2">
-            <div>
-              <label class="block text-[10px] font-bold text-slate-500 mb-0.5">Organization</label>
-              <input type="text" data-idx="${idx}" data-field="company" value="${m.company}" class="w-full p-2 bg-slate-50 border rounded-lg text-xs">
-            </div>
-            <div>
-              <label class="block text-[10px] font-bold text-slate-500 mb-0.5">Category</label>
-              <input type="text" data-idx="${idx}" data-field="category" value="${m.category}" class="w-full p-2 bg-slate-50 border rounded-lg text-xs">
-            </div>
-          </div>
-
-          <!-- Photo Upload & Filename Input -->
-          <div class="bg-blue-50/60 p-3 rounded-xl border border-blue-100 space-y-2">
-            <label class="block text-[10px] font-bold text-blue-900">Mentor Photo (File Name or Upload Image)</label>
-            <div class="flex items-center gap-2">
-              <input type="text" id="photoInput_${idx}" data-idx="${idx}" data-field="photo" value="${m.photo || ''}" placeholder="e.g. janelle-patrick.png" class="flex-1 p-2 bg-white border border-slate-300 rounded-lg text-xs">
-              <label class="px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg cursor-pointer transition shrink-0 flex items-center gap-1">
-                <i class="fa-solid fa-upload"></i> Upload
-                <input type="file" accept="image/*" onchange="handleImageUpload(event, ${idx})" class="hidden">
-              </label>
-            </div>
-            <p class="text-[10px] text-slate-500">Click <strong>Upload</strong> to pick a photo from your computer for instant preview!</p>
-          </div>
-
-          <div>
-            <label class="block text-[10px] font-bold text-slate-500 mb-0.5">Focus Areas / Skills (comma separated)</label>
-            <input type="text" data-idx="${idx}" data-field="skills" value="${(m.skills || []).join(', ')}" class="w-full p-2 bg-slate-50 border rounded-lg text-xs">
-          </div>
-
-          <div>
-            <label class="block text-[10px] font-bold text-slate-500 mb-0.5">3rd-Person Bio</label>
-            <textarea data-idx="${idx}" data-field="bio" rows="4" class="w-full p-2 bg-slate-50 border rounded-lg text-xs">${m.bio}</textarea>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function handleImageUpload(event, idx) {
-      const file = event.target.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const dataUrl = e.target.result;
-        programData.mentors[idx].photo = dataUrl;
-        const photoInput = document.getElementById(`photoInput_${idx}`);
-        if (photoInput) photoInput.value = file.name;
-        renderMentorGrid();
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function addNewMentorTemplate() {
-      programData.mentors.push({
-        id: 'm_' + Date.now(),
-        name: "New Mentor Name",
-        title: "Professional Title",
-        company: "Organization Name",
-        photo: "",
-        category: "General",
-        skills: ["Leadership", "Career Guidance"],
-        bio: "This mentor provides guidance on career trajectory, academic choices, and personal growth."
-      });
-      renderEditorMentorList();
-    }
-
-    function removeMentorFromEditor(idx) {
-      programData.mentors.splice(idx, 1);
-      renderEditorMentorList();
-    }
-
-    function saveCustomContent() {
-      const newBlurb = document.getElementById('editProgramBlurbText').value;
-      if (newBlurb) programData.blurb = newBlurb;
-
-      const inputs = document.querySelectorAll('#editorMentorList [data-field]');
-      inputs.forEach(input => {
-        const idx = parseInt(input.getAttribute('data-idx'));
-        const field = input.getAttribute('data-field');
-        if (programData.mentors[idx]) {
-          if (field === 'skills') {
-            programData.mentors[idx][field] = input.value.split(',').map(s => s.trim()).filter(Boolean);
-          } else {
-            programData.mentors[idx][field] = input.value;
-          }
-        }
-      });
-
-      renderProgramInfo();
-      renderTagFilters();
-      filterMentors();
-      closeEditDrawer();
     }
   </script>
 </body>
