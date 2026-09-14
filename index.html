@@ -70,7 +70,7 @@
     const mentors = [
       {
         name: "Janelle Patrick",
-        role: "RMHS Mentorship Program Leader",
+        role: "Mentor",
         photo: "Janelle-Patrick.png",
         bio: "Janelle Patrick, MSW, LCSW, is a Licensed Clinical Social Worker in Massachusetts and Ohio with extensive experience in behavioral health, crisis intervention, individual and family therapy, grief support, and case management. She is dedicated to helping individuals, couples, families, and communities navigate challenges, build resilience, and achieve meaningful healing and growth.\n\nThroughout her career, Patrick has provided evidence-based therapeutic services using modalities including CBT, DBT, and psychotherapy. Her experience includes conducting crisis evaluations, providing outpatient and telehealth therapy, facilitating grief and recovery support groups, completing biopsychosocial assessments, and connecting individuals and families with essential resources and services.\n\nIn addition to her clinical expertise, Patrick is an accomplished leader with experience building and managing high-performing teams, mentoring professionals, facilitating groups, conducting performance evaluations, and promoting professional growth. Her ability to combine strong clinical judgment, compassionate communication, and effective leadership allows her to support both clients and colleagues with empathy and purpose.\n\nPatrick holds a Master of Social Work from Simmons University and a Bachelor of Science in Criminal Justice, with a minor in Communications, from Bridgewater State University. She is passionate about advancing mental wellness, fostering healing, and empowering others to thrive.",
         linkedin: "https://www.linkedin.com/in/janelle-patrick-783a95143/"
@@ -79,7 +79,7 @@
         name: "Xavier Andrews",
         role: "Mentor",
         photo: "Xavier-Andrews.jpg",
-        bio: "Xavier Andrews is a seasoned communications professional specializing in media strategy, internal and crisis communications, and community engagement. He previously served as Director of Communications at Boston Public Schools (BPS), a position he held during the peak of the COVID-19 pandemic. In this role, he developed and executed comprehensive communications campaigns, advised the Superintendent and school administrators, and oversaw digital communications to advance the district’s mission of providing an excellent and equitable education to every student.\n\nFollowing his time at BPS, Andrews held senior leadership roles at United Way of Massachusetts Bay and the Black Economic Council of Massachusetts. He recently relocated to Rochester, New York, where he serves as Assistant to Mayor Malik Evans. In this role, Andrews is a member of Mayor Evans’ Senior Management Team and works to align initiatives and coordinate stakeholder engagement to advance the Mayor’s agenda.\n\nA Dorchester native and Boston Latin School graduate, Andrews holds a bachelor’s degree in communications from Salve Regina University. In his spare time, he enjoys running, traveling, and writing his Substack.",
+        bio: "Xavier Andrews is a seasoned communications professional specializing in media strategy, internal and crisis communications, and community engagement. He previously served as Director of Communications at Boston Public Schools (BPS), a position he held during the peak of the COVID-19 pandemic. In this role, he developed and executed comprehensive communications campaigns, advised the Superintendent and school administrators, and oversaw digital communications to advance the district’s mission of providing an excellent and equitable education to every student.\n\nFollowing his time at BPS, Andrews held senior leadership roles at United Way of Massachusetts Bay and the Black Economic Council of Massachusetts. He recently relocated to Rochester, New York, where she serves as Assistant to Mayor Malik Evans. In this role, Andrews is a member of Mayor Evans’ Senior Management Team and works to align initiatives and coordinate stakeholder engagement to advance the Mayor’s agenda.\n\nA Dorchester native and Boston Latin School graduate, Andrews holds a bachelor’s degree in communications from Salve Regina University. In his spare time, he enjoys running, traveling, and writing his Substack.",
         linkedin: "https://www.linkedin.com/in/xandrews/"
       },
       {
@@ -132,9 +132,6 @@
           .map(paragraph => `<p class="mb-3 text-slate-600 text-sm leading-relaxed">${paragraph.replace(/\n/g, ' ')}</p>`)
           .join('');
 
-        // Clean URL display string (e.g. "linkedin.com/in/username")
-        const displayUrl = mentor.linkedin.replace('https://www.', '').replace('https://', '');
-
         card.innerHTML = `
           <div>
             <div class="h-64 w-full bg-slate-100 overflow-hidden relative">
@@ -154,15 +151,17 @@
             </div>
           </div>
           <div class="px-5 pb-5 pt-3 border-t border-slate-100 mt-auto">
-            <a 
-              href="${mentor.linkedin}" 
-              target="_blank" 
-              rel="noreferrer noopener"
-              class="inline-flex items-center gap-2 text-xs font-medium text-sky-700 hover:text-indigo-600 hover:underline truncate max-w-full"
-            >
-              <i class="fa-brands fa-linkedin text-sm shrink-0"></i>
-              <span class="truncate">${displayUrl}</span>
-            </a>
+            <div class="flex items-center gap-2 overflow-hidden">
+              <i class="fa-brands fa-linkedin text-sm text-sky-600 shrink-0"></i>
+              <a 
+                href="${mentor.linkedin}" 
+                target="_blank" 
+                rel="noreferrer noopener"
+                class="text-xs font-medium text-sky-700 hover:text-indigo-600 underline truncate"
+              >
+                ${mentor.linkedin}
+              </a>
+            </div>
           </div>
         `;
         
