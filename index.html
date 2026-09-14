@@ -274,7 +274,14 @@
           name: "Janelle Patrick, MSW, LCSW",
           title: "Licensed Clinical Social Worker",
           company: "Behavioral Health & Crisis Intervention",
-          photo: "janelle-patrick.png",
+          photos: [
+            "janelle-patrick.png",
+            "janelle-patrick.jpg",
+            "Screenshot 2026-09-10 181940.png",
+            "Screenshot 2026-09-10 181940.PNG",
+            "assets/janelle-patrick.png",
+            "images/janelle-patrick.png"
+          ],
           fallbackPhoto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400",
           linkedin: "https://www.linkedin.com/in/janelle-patrick-783a95143/",
           category: "Behavioral Health & Social Work",
@@ -286,7 +293,15 @@
           name: "Xavier Andrews",
           title: "Assistant to Mayor Malik Evans",
           company: "City of Rochester / Executive Leadership",
-          photo: "xavier-andrews.jpg",
+          photos: [
+            "xavier-andrews.jpg",
+            "xavier-andrews.png",
+            "XA_Office.jpg",
+            "XA_Office.jpeg",
+            "XA_Office.JPG",
+            "assets/xavier-andrews.jpg",
+            "images/xavier-andrews.jpg"
+          ],
           fallbackPhoto: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400",
           linkedin: "https://www.linkedin.com/in/xandrews/",
           category: "Communications & Government",
@@ -298,7 +313,14 @@
           name: "Eva-Maria Alexandra Panagiotou",
           title: "Project Officer & PhD Candidate",
           company: "MEDASSET (Sea Turtle Conservation)",
-          photo: "eva-maria-panagiotou.jpg",
+          photos: [
+            "eva-maria-panagiotou.jpg",
+            "eva-maria-panagiotou.png",
+            "Screenshot 2026-09-08 130149.jpg",
+            "Screenshot 2026-09-08 130149.JPG",
+            "assets/eva-maria-panagiotou.jpg",
+            "images/eva-maria-panagiotou.jpg"
+          ],
           fallbackPhoto: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400",
           linkedin: "https://www.linkedin.com/in/alexandrapanagiotou/",
           category: "Conservation & Science",
@@ -310,7 +332,14 @@
           name: "Ben Felings",
           title: "Director of Estimating & Strategic Growth",
           company: "Nappa Electrical Contractors",
-          photo: "ben-felings.png",
+          photos: [
+            "ben-felings.png",
+            "ben-felings.jpg",
+            "Screenshot 2026-09-08 131123.png",
+            "Screenshot 2026-09-08 131123.PNG",
+            "assets/ben-felings.png",
+            "images/ben-felings.png"
+          ],
           fallbackPhoto: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400",
           linkedin: "https://www.linkedin.com/in/ben-felings-a7a0a156/",
           category: "Engineering & Construction",
@@ -322,7 +351,14 @@
           name: "Danyson F. Tavares",
           title: "Executive Director",
           company: "Boston Society for Architecture",
-          photo: "danyson-tavares.jpg",
+          photos: [
+            "danyson-tavares.jpg",
+            "danyson-tavares.png",
+            "Screenshot 2026-09-10 181544.jpg",
+            "Screenshot 2026-09-10 181544.JPG",
+            "assets/danyson-tavares.jpg",
+            "images/danyson-tavares.jpg"
+          ],
           fallbackPhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400",
           linkedin: "https://www.linkedin.com/in/danyson-tavares-54092258/",
           category: "Architecture & Nonprofit Leadership",
@@ -334,7 +370,14 @@
           name: "jamele adams",
           title: "Director of Love, Inclusion & Trust",
           company: "Scituate Public Schools",
-          photo: "jamele-adams.jpg",
+          photos: [
+            "jamele-adams.jpg",
+            "jamele-adams.png",
+            "Screenshot 2026-09-10 181655.jpg",
+            "Screenshot 2026-09-10 181655.JPG",
+            "assets/jamele-adams.jpg",
+            "images/jamele-adams.jpg"
+          ],
           fallbackPhoto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400",
           linkedin: "https://www.linkedin.com/in/jamele-adams-868607304/",
           category: "DEI & Creative Leadership",
@@ -346,7 +389,14 @@
           name: "Sebastian Johnson",
           title: "State Policy Fellow",
           company: "Institute on Taxation and Economic Policy",
-          photo: "sebastian-johnson.png",
+          photos: [
+            "sebastian-johnson.png",
+            "sebastian-johnson.jpg",
+            "Screenshot 2026-09-14 120414.png",
+            "Screenshot 2026-09-14 120414.PNG",
+            "assets/sebastian-johnson.png",
+            "images/sebastian-johnson.png"
+          ],
           fallbackPhoto: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400",
           linkedin: "https://www.linkedin.com/in/sebastian-johnson-7209a87a/",
           category: "Public Policy & Economics",
@@ -364,6 +414,27 @@
       renderTagFilters();
       renderMentorGrid();
     });
+
+    function handleImageError(img) {
+      try {
+        const sources = JSON.parse(img.dataset.sources || '[]');
+        let currentIndex = parseInt(img.dataset.sourceIndex || '0', 10);
+        currentIndex++;
+        if (currentIndex < sources.length) {
+          img.dataset.sourceIndex = currentIndex;
+          img.src = sources[currentIndex];
+        } else {
+          img.style.display = 'none';
+          const parent = img.parentElement;
+          if (parent) {
+            const initialsEl = parent.querySelector('.avatar-initials');
+            if (initialsEl) initialsEl.classList.remove('hidden');
+          }
+        }
+      } catch (e) {
+        img.style.display = 'none';
+      }
+    }
 
     function getInitials(name) {
       return name
@@ -472,8 +543,9 @@
       grid.innerHTML = mentorsToRender.map((m, idx) => {
         const initials = getInitials(m.name);
         const gradient = bgGradients[idx % bgGradients.length];
-        const photoSrc = m.photo || m.fallbackPhoto;
-        const fallbackSrc = m.fallbackPhoto || '';
+        const allSources = [...(m.photos || []), m.fallbackPhoto].filter(Boolean);
+        const sourcesJson = JSON.stringify(allSources).replace(/"/g, '&quot;');
+        const firstSrc = allSources[0] || '';
         
         return `
           <div onclick="openMentorModal('${m.id}')" class="group cursor-pointer bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl border border-slate-200 hover:border-blue-400 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
@@ -483,8 +555,8 @@
               <!-- Header Avatar & Info -->
               <div class="flex items-start space-x-4 mb-4">
                 <div class="w-16 h-16 rounded-2xl bg-gradient-to-br ${gradient} text-white flex items-center justify-center font-extrabold text-lg shadow-md shrink-0 border-2 border-white group-hover:scale-105 transition-transform overflow-hidden relative">
-                  <span class="absolute">${initials}</span>
-                  <img src="${photoSrc}" alt="${m.name}" data-fallback="${fallbackSrc}" class="w-full h-full object-cover relative z-10" onerror="if(!this.dataset.failed){this.dataset.failed='true';if(this.dataset.fallback){this.src=this.dataset.fallback;}else{this.style.display='none';}}else{this.style.display='none';}">
+                  <span class="absolute avatar-initials">${initials}</span>
+                  <img src="${firstSrc}" alt="${m.name}" data-sources="${sourcesJson}" data-source-index="0" class="w-full h-full object-cover relative z-10" onerror="handleImageError(this)">
                 </div>
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center justify-between gap-1">
@@ -522,14 +594,15 @@
       flyerGrid.innerHTML = mentorsToRender.map((m, idx) => {
         const initials = getInitials(m.name);
         const gradient = bgGradients[idx % bgGradients.length];
-        const photoSrc = m.photo || m.fallbackPhoto;
-        const fallbackSrc = m.fallbackPhoto || '';
+        const allSources = [...(m.photos || []), m.fallbackPhoto].filter(Boolean);
+        const sourcesJson = JSON.stringify(allSources).replace(/"/g, '&quot;');
+        const firstSrc = allSources[0] || '';
 
         return `
           <div class="bg-white p-3.5 rounded-xl border border-slate-300 flex space-x-3 items-start">
             <div class="w-14 h-14 rounded-xl bg-gradient-to-br ${gradient} text-white flex items-center justify-center font-bold text-sm shrink-0 border border-slate-200 overflow-hidden relative">
-              <span class="absolute">${initials}</span>
-              <img src="${photoSrc}" alt="${m.name}" data-fallback="${fallbackSrc}" class="w-full h-full object-cover relative z-10" onerror="if(!this.dataset.failed){this.dataset.failed='true';if(this.dataset.fallback){this.src=this.dataset.fallback;}else{this.style.display='none';}}else{this.style.display='none';}">
+              <span class="absolute avatar-initials">${initials}</span>
+              <img src="${firstSrc}" alt="${m.name}" data-sources="${sourcesJson}" data-source-index="0" class="w-full h-full object-cover relative z-10" onerror="handleImageError(this)">
             </div>
             <div class="flex-1 min-w-0">
               <div class="flex items-center justify-between">
@@ -553,34 +626,17 @@
       const initials = getInitials(m.name);
 
       initialsEl.innerText = initials;
+      const allSources = [...(m.photos || []), m.fallbackPhoto].filter(Boolean);
 
-      const photoSrc = m.photo || m.fallbackPhoto;
-      const fallbackSrc = m.fallbackPhoto || '';
-
-      if (photoSrc) {
-        imgEl.src = photoSrc;
-        imgEl.dataset.fallback = fallbackSrc;
-        imgEl.dataset.failed = '';
+      if (allSources.length > 0) {
+        imgEl.dataset.sources = JSON.stringify(allSources);
+        imgEl.dataset.sourceIndex = "0";
+        imgEl.src = allSources[0];
         imgEl.style.display = 'block';
         imgEl.classList.remove('hidden');
-        imgEl.onerror = function() {
-          if (!this.dataset.failed) {
-            this.dataset.failed = 'true';
-            if (this.dataset.fallback) {
-              this.src = this.dataset.fallback;
-            } else {
-              this.style.display = 'none';
-              initialsEl.classList.remove('hidden');
-            }
-          } else {
-            this.style.display = 'none';
-            initialsEl.classList.remove('hidden');
-          }
-        };
       } else {
         imgEl.style.display = 'none';
         imgEl.classList.add('hidden');
-        initialsEl.classList.remove('hidden');
       }
 
       document.getElementById('modalName').innerText = m.name;
