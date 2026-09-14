@@ -94,6 +94,13 @@
 
       <!-- Action Controls -->
       <div class="flex items-center space-x-2 sm:space-x-3">
+        <!-- Load Local Photos Button -->
+        <label for="localPhotoInput" class="cursor-pointer px-3 py-2 text-xs sm:text-sm font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-lg transition-all flex items-center space-x-1.5" title="Upload local image files from your computer to display all photos instantly">
+          <i class="fa-solid fa-image"></i>
+          <span class="hidden sm:inline">Load Local Photos</span>
+        </label>
+        <input type="file" id="localPhotoInput" multiple accept="image/*" class="hidden" onchange="handleLocalPhotosUpload(event)">
+
         <!-- Toggle View Mode Button -->
         <button onclick="toggleFlyerMode()" id="viewToggleBtn" class="px-3 py-2 text-xs sm:text-sm font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 rounded-lg transition-all flex items-center space-x-2">
           <i class="fa-solid fa-file-pdf"></i>
@@ -275,12 +282,12 @@
           title: "Licensed Clinical Social Worker",
           company: "Behavioral Health & Crisis Intervention",
           photos: [
-            "janelle-patrick.jpg",
-            "janelle-patrick.png",
-            "Screenshot%202026-09-10%20181940.png",
-            "Screenshot 2026-09-10 181940.png",
-            "Screenshot%202026-09-10%20181940.PNG",
-            "Screenshot 2026-09-10 181940.PNG"
+            "Screenshot 2026-09-10 181940.png", "Screenshot%202026-09-10%20181940.png",
+            "Screenshot 2026-09-10 181940.PNG", "Screenshot%202026-09-10%20181940.PNG",
+            "Screenshot 2026-09-10 181940.jpg", "Screenshot%202026-09-10%20181940.jpg",
+            "Screenshot 2026-09-10 181940.JPG", "Screenshot%202026-09-10%20181940.JPG",
+            "Screenshot 2026-09-10 181940.jpeg", "Screenshot%202026-09-10%20181940.jpeg",
+            "janelle-patrick.jpg", "janelle-patrick.png", "janelle-patrick.jpeg", "janelle-patrick.PNG"
           ],
           fallbackPhoto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400",
           linkedin: "https://www.linkedin.com/in/janelle-patrick-783a95143/",
@@ -294,12 +301,9 @@
           title: "Assistant to Mayor Malik Evans",
           company: "City of Rochester / Executive Leadership",
           photos: [
-            "xavier-andrews.jpg",
-            "xavier-andrews.png",
-            "XA_Office.jpg",
-            "XA_Office.jpeg",
-            "XA_Office.png",
-            "XA_Office.JPG"
+            "XA_Office.jpg", "XA_Office.jpeg", "XA_Office.png", "XA_Office.JPG", "XA_Office.JPEG", "XA_Office.PNG",
+            "xa_office.jpg", "xa_office.png", "xa_office.jpeg", "xa_office.JPG",
+            "xavier-andrews.jpg", "xavier-andrews.png", "xavier-andrews.jpeg", "xavier-andrews.JPG"
           ],
           fallbackPhoto: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400",
           linkedin: "https://www.linkedin.com/in/xandrews/",
@@ -313,12 +317,12 @@
           title: "Project Officer & PhD Candidate",
           company: "MEDASSET (Sea Turtle Conservation)",
           photos: [
-            "eva-maria-panagiotou.jpg",
-            "eva-maria-panagiotou.png",
-            "Screenshot%202026-09-08%20130149.jpg",
-            "Screenshot 2026-09-08 130149.jpg",
-            "Screenshot%202026-09-08%20130149.png",
-            "Screenshot 2026-09-08 130149.png"
+            "Screenshot 2026-09-08 130149.jpg", "Screenshot%202026-09-08%20130149.jpg",
+            "Screenshot 2026-09-08 130149.JPG", "Screenshot%202026-09-08%20130149.JPG",
+            "Screenshot 2026-09-08 130149.png", "Screenshot%202026-09-08%20130149.png",
+            "Screenshot 2026-09-08 130149.PNG", "Screenshot%202026-09-08%20130149.PNG",
+            "Screenshot 2026-09-08 130149.jpeg", "Screenshot%202026-09-08%20130149.jpeg",
+            "eva-maria-panagiotou.jpg", "eva-maria-panagiotou.png", "eva-maria-panagiotou.jpeg"
           ],
           fallbackPhoto: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400",
           linkedin: "https://www.linkedin.com/in/alexandrapanagiotou/",
@@ -332,12 +336,12 @@
           title: "Director of Estimating & Strategic Growth",
           company: "Nappa Electrical Contractors",
           photos: [
-            "ben-felings.jpg",
-            "ben-felings.png",
-            "Screenshot%202026-09-08%20131123.png",
-            "Screenshot 2026-09-08 131123.png",
-            "Screenshot%202026-09-08%20131123.jpg",
-            "Screenshot 2026-09-08 131123.jpg"
+            "Screenshot 2026-09-08 131123.png", "Screenshot%202026-09-08%20131123.png",
+            "Screenshot 2026-09-08 131123.PNG", "Screenshot%202026-09-08%20131123.PNG",
+            "Screenshot 2026-09-08 131123.jpg", "Screenshot%202026-09-08%20131123.jpg",
+            "Screenshot 2026-09-08 131123.JPG", "Screenshot%202026-09-08%20131123.JPG",
+            "Screenshot 2026-09-08 131123.jpeg", "Screenshot%202026-09-08%20131123.jpeg",
+            "ben-felings.jpg", "ben-felings.png", "ben-felings.jpeg"
           ],
           fallbackPhoto: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400",
           linkedin: "https://www.linkedin.com/in/ben-felings-a7a0a156/",
@@ -351,12 +355,12 @@
           title: "Executive Director",
           company: "Boston Society for Architecture",
           photos: [
-            "danyson-tavares.jpg",
-            "danyson-tavares.png",
-            "Screenshot%202026-09-10%20181544.jpg",
-            "Screenshot 2026-09-10 181544.jpg",
-            "Screenshot%202026-09-10%20181544.png",
-            "Screenshot 2026-09-10 181544.png"
+            "Screenshot 2026-09-10 181544.jpg", "Screenshot%202026-09-10%20181544.jpg",
+            "Screenshot 2026-09-10 181544.JPG", "Screenshot%202026-09-10%20181544.JPG",
+            "Screenshot 2026-09-10 181544.png", "Screenshot%202026-09-10%20181544.png",
+            "Screenshot 2026-09-10 181544.PNG", "Screenshot%202026-09-10%20181544.PNG",
+            "Screenshot 2026-09-10 181544.jpeg", "Screenshot%202026-09-10%20181544.jpeg",
+            "danyson-tavares.jpg", "danyson-tavares.png", "danyson-tavares.jpeg"
           ],
           fallbackPhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400",
           linkedin: "https://www.linkedin.com/in/danyson-tavares-54092258/",
@@ -370,12 +374,12 @@
           title: "Director of Love, Inclusion & Trust",
           company: "Scituate Public Schools",
           photos: [
-            "jamele-adams.jpg",
-            "jamele-adams.png",
-            "Screenshot%202026-09-10%20181655.jpg",
-            "Screenshot 2026-09-10 181655.jpg",
-            "Screenshot%202026-09-10%20181655.png",
-            "Screenshot 2026-09-10 181655.png"
+            "Screenshot 2026-09-10 181655.jpg", "Screenshot%202026-09-10%20181655.jpg",
+            "Screenshot 2026-09-10 181655.JPG", "Screenshot%202026-09-10%20181655.JPG",
+            "Screenshot 2026-09-10 181655.png", "Screenshot%202026-09-10%20181655.png",
+            "Screenshot 2026-09-10 181655.PNG", "Screenshot%202026-09-10%20181655.PNG",
+            "Screenshot 2026-09-10 181655.jpeg", "Screenshot%202026-09-10%20181655.jpeg",
+            "jamele-adams.jpg", "jamele-adams.png", "jamele-adams.jpeg"
           ],
           fallbackPhoto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400",
           linkedin: "https://www.linkedin.com/in/jamele-adams-868607304/",
@@ -389,12 +393,12 @@
           title: "State Policy Fellow",
           company: "Institute on Taxation and Economic Policy",
           photos: [
-            "sebastian-johnson.jpg",
-            "sebastian-johnson.png",
-            "Screenshot%202026-09-14%20120414.png",
-            "Screenshot 2026-09-14 120414.png",
-            "Screenshot%202026-09-14%20120414.jpg",
-            "Screenshot 2026-09-14 120414.jpg"
+            "Screenshot 2026-09-14 120414.png", "Screenshot%202026-09-14%20120414.png",
+            "Screenshot 2026-09-14 120414.PNG", "Screenshot%202026-09-14%20120414.PNG",
+            "Screenshot 2026-09-14 120414.jpg", "Screenshot%202026-09-14%20120414.jpg",
+            "Screenshot 2026-09-14 120414.JPG", "Screenshot%202026-09-14%20120414.JPG",
+            "Screenshot 2026-09-14 120414.jpeg", "Screenshot%202026-09-14%20120414.jpeg",
+            "sebastian-johnson.jpg", "sebastian-johnson.png", "sebastian-johnson.jpeg"
           ],
           fallbackPhoto: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400",
           linkedin: "https://www.linkedin.com/in/sebastian-johnson-7209a87a/",
@@ -402,6 +406,37 @@
           skills: ["Public Policy", "Economic Research", "Government Affairs"],
           bio: "Sebastian Johnson earned his bachelor's degree in economics and government from Georgetown University and his master's degree in public policy from Harvard University's Kennedy School of Government. Johnson previously worked as an education policy fellow for former Maryland Governor Martin O'Malley and as a transportation policy aide to Montgomery County Councilmember George Leventhal. He currently serves as a state policy fellow at the Institute on Taxation and Economic Policy, conducting rigorous research to advance economic justice."
         }
+      ]
+    };
+
+    function handleLocalPhotosUpload(event) {
+      const files = Array.from(event.target.files || []);
+      if (!files.length) return;
+
+      const keywords = {
+        m1: ['181940', 'janelle'],
+        m2: ['xa_office', 'xa', 'xavier'],
+        m3: ['130149', 'eva'],
+        m4: ['131123', 'ben', 'felings'],
+        m5: ['181544', 'danyson'],
+        m6: ['181655', 'jamele'],
+        m7: ['120414', 'sebastian']
+      };
+
+      files.forEach(file => {
+        const fname = file.name.toLowerCase();
+        const objectUrl = URL.createObjectURL(file);
+
+        programData.mentors.forEach(m => {
+          const keys = keywords[m.id] || [];
+          if (keys.some(k => fname.includes(k))) {
+            m.photos.unshift(objectUrl);
+          }
+        });
+      });
+
+      renderMentorGrid();
+    }
       ]
     };
 
