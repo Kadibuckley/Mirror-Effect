@@ -94,13 +94,6 @@
 
       <!-- Action Controls -->
       <div class="flex items-center space-x-2 sm:space-x-3">
-        <!-- Load Local Photos Button -->
-        <label for="localPhotoInput" class="cursor-pointer px-3 py-2 text-xs sm:text-sm font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-lg transition-all flex items-center space-x-1.5" title="Upload local image files from your computer to display all photos instantly">
-          <i class="fa-solid fa-image"></i>
-          <span class="hidden sm:inline">Load Local Photos</span>
-        </label>
-        <input type="file" id="localPhotoInput" multiple accept="image/*" class="hidden" onchange="handleLocalPhotosUpload(event)">
-
         <!-- Toggle View Mode Button -->
         <button onclick="toggleFlyerMode()" id="viewToggleBtn" class="px-3 py-2 text-xs sm:text-sm font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 rounded-lg transition-all flex items-center space-x-2">
           <i class="fa-solid fa-file-pdf"></i>
@@ -394,9 +387,8 @@
           company: "Institute on Taxation and Economic Policy",
           photos: [
             "Screenshot 2026-09-14 120414.png", "Screenshot%202026-09-14%20120414.png",
-            "Screenshot 2026-09-14 120414.PNG", "Screenshot%202026-09-14%20120414.PNG",
-            "Screenshot 2026-09-14 120414.jpg", "Screenshot%202026-09-14%20120414.jpg",
             "Screenshot 2026-09-14 120414.JPG", "Screenshot%202026-09-14%20120414.JPG",
+            "Screenshot 2026-09-14 120414.jpg", "Screenshot%202026-09-14%20120414.jpg",
             "Screenshot 2026-09-14 120414.jpeg", "Screenshot%202026-09-14%20120414.jpeg",
             "sebastian-johnson.jpg", "sebastian-johnson.png", "sebastian-johnson.jpeg"
           ],
@@ -406,37 +398,6 @@
           skills: ["Public Policy", "Economic Research", "Government Affairs"],
           bio: "Sebastian Johnson earned his bachelor's degree in economics and government from Georgetown University and his master's degree in public policy from Harvard University's Kennedy School of Government. Johnson previously worked as an education policy fellow for former Maryland Governor Martin O'Malley and as a transportation policy aide to Montgomery County Councilmember George Leventhal. He currently serves as a state policy fellow at the Institute on Taxation and Economic Policy, conducting rigorous research to advance economic justice."
         }
-      ]
-    };
-
-    function handleLocalPhotosUpload(event) {
-      const files = Array.from(event.target.files || []);
-      if (!files.length) return;
-
-      const keywords = {
-        m1: ['181940', 'janelle'],
-        m2: ['xa_office', 'xa', 'xavier'],
-        m3: ['130149', 'eva'],
-        m4: ['131123', 'ben', 'felings'],
-        m5: ['181544', 'danyson'],
-        m6: ['181655', 'jamele'],
-        m7: ['120414', 'sebastian']
-      };
-
-      files.forEach(file => {
-        const fname = file.name.toLowerCase();
-        const objectUrl = URL.createObjectURL(file);
-
-        programData.mentors.forEach(m => {
-          const keys = keywords[m.id] || [];
-          if (keys.some(k => fname.includes(k))) {
-            m.photos.unshift(objectUrl);
-          }
-        });
-      });
-
-      renderMentorGrid();
-    }
       ]
     };
 
