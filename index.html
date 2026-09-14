@@ -335,7 +335,7 @@
           name: "Janelle Patrick, MSW, LCSW",
           title: "Licensed Clinical Social Worker",
           company: "Behavioral Health & Crisis Intervention",
-          photo: "Screenshot 2026-09-10 181940.png",
+          photo: "janelle-patrick.png",
           linkedin: "https://www.linkedin.com/in/janelle-patrick-783a95143/",
           category: "Behavioral Health & Social Work",
           skills: ["Crisis Intervention", "CBT & DBT Therapy", "Team Leadership"],
@@ -346,7 +346,7 @@
           name: "Xavier Andrews",
           title: "Assistant to Mayor Malik Evans",
           company: "City of Rochester / Executive Leadership",
-          photo: "XA_Office.jpg",
+          photo: "xavier-andrews.jpg",
           linkedin: "https://www.linkedin.com/in/xandrews/",
           category: "Communications & Government",
           skills: ["Media Strategy", "Crisis Communications", "Stakeholder Engagement"],
@@ -357,7 +357,7 @@
           name: "Eva-Maria Alexandra Panagiotou",
           title: "Project Officer & PhD Candidate",
           company: "MEDASSET (Sea Turtle Conservation)",
-          photo: "Screenshot 2026-09-08 130149.jpg",
+          photo: "eva-maria-panagiotou.jpg",
           linkedin: "https://www.linkedin.com/in/alexandrapanagiotou/",
           category: "Conservation & Science",
           skills: ["Marine Science", "Wildlife Conservation", "Research & Policy"],
@@ -368,7 +368,7 @@
           name: "Ben Felings",
           title: "Director of Estimating & Strategic Growth",
           company: "Nappa Electrical Contractors",
-          photo: "Screenshot 2026-09-08 131123.png",
+          photo: "ben-felings.png",
           linkedin: "https://www.linkedin.com/in/ben-felings-a7a0a156/",
           category: "Engineering & Construction",
           skills: ["Strategic Growth", "Project Management", "USMC Veteran Leadership"],
@@ -379,7 +379,7 @@
           name: "Danyson F. Tavares",
           title: "Executive Director",
           company: "Boston Society for Architecture",
-          photo: "Screenshot 2026-09-10 181544.jpg",
+          photo: "danyson-tavares.jpg",
           linkedin: "https://www.linkedin.com/in/danyson-tavares-54092258/",
           category: "Architecture & Nonprofit Leadership",
           skills: ["Architecture", "Community Development", "Inclusive Excellence"],
@@ -390,7 +390,7 @@
           name: "jamele adams",
           title: "Director of Love, Inclusion & Trust",
           company: "Scituate Public Schools",
-          photo: "Screenshot 2026-09-10 181655.jpg",
+          photo: "jamele-adams.jpg",
           linkedin: "https://www.linkedin.com/in/jamele-adams-868607304/",
           category: "DEI & Creative Leadership",
           skills: ["Diversity & Equity", "Poetry & Arts", "Student Advocacy"],
@@ -401,7 +401,7 @@
           name: "Sebastian Johnson",
           title: "State Policy Fellow",
           company: "Institute on Taxation and Economic Policy",
-          photo: "Screenshot 2026-09-14 120414.png",
+          photo: "sebastian-johnson.png",
           linkedin: "https://www.linkedin.com/in/sebastian-johnson-7209a87a/",
           category: "Public Policy & Economics",
           skills: ["Public Policy", "Economic Research", "Government Affairs"],
@@ -704,6 +704,19 @@
             </div>
           </div>
 
+          <!-- Photo Upload & Filename Input -->
+          <div class="bg-blue-50/60 p-3 rounded-xl border border-blue-100 space-y-2">
+            <label class="block text-[10px] font-bold text-blue-900">Mentor Photo (File Name or Upload Image)</label>
+            <div class="flex items-center gap-2">
+              <input type="text" id="photoInput_${idx}" data-idx="${idx}" data-field="photo" value="${m.photo || ''}" placeholder="e.g. janelle-patrick.png" class="flex-1 p-2 bg-white border border-slate-300 rounded-lg text-xs">
+              <label class="px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg cursor-pointer transition shrink-0 flex items-center gap-1">
+                <i class="fa-solid fa-upload"></i> Upload
+                <input type="file" accept="image/*" onchange="handleImageUpload(event, ${idx})" class="hidden">
+              </label>
+            </div>
+            <p class="text-[10px] text-slate-500">Click <strong>Upload</strong> to pick a photo from your computer for instant preview!</p>
+          </div>
+
           <div>
             <label class="block text-[10px] font-bold text-slate-500 mb-0.5">Focus Areas / Skills (comma separated)</label>
             <input type="text" data-idx="${idx}" data-field="skills" value="${(m.skills || []).join(', ')}" class="w-full p-2 bg-slate-50 border rounded-lg text-xs">
@@ -715,6 +728,21 @@
           </div>
         </div>
       `).join('');
+    }
+
+    function handleImageUpload(event, idx) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const dataUrl = e.target.result;
+        programData.mentors[idx].photo = dataUrl;
+        const photoInput = document.getElementById(`photoInput_${idx}`);
+        if (photoInput) photoInput.value = file.name;
+        renderMentorGrid();
+      };
+      reader.readAsDataURL(file);
     }
 
     function addNewMentorTemplate() {
